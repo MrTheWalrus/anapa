@@ -1,5 +1,7 @@
 An ongoing experiment with Ember.js and Arbor.js.
 
+Open index.html in browser.
+
 Use the list to add and remove nodes from the graph. Newly created nodes will be attached to any that are checked (green) at time of creation.
 
 Stuff to do next time:
