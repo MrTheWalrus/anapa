@@ -1,0 +1,11 @@
+An ongoing experiment with Ember.js and Arbor.js.
+
+Use the list to add and remove nodes from the graph. Newly created nodes will be attached to any that are checked (green) at time of creation.
+
+Stuff to do next time:
+Create existing nodes on page reload
+Make Model automatically trigger a canvas redraw on change
+Attach full model as data element on graph nodes
+Node style based on model properties
+Label nodes with names
+Autoupdate names
