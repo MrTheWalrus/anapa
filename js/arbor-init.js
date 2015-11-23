@@ -69,7 +69,7 @@ var sys;
           label = node.data.model.get('title');
           if(label){
             ctx.font = 'italic 13px sans-serif';
-            ctx.fillText (label, pt.x+w, pt.y);
+            ctx.fillText (label, pt.x+w/2+2, pt.y+w/2);
           }
         })          
       },
