@@ -59,6 +59,7 @@ Anapa.TodosController = Ember.ArrayController.extend({
     } else {
       this.setEach('isCompleted', value);
       this.invoke('save');
+      sys.renderer.redraw();
       return value;
     }
   }.property('@each.isCompleted'),

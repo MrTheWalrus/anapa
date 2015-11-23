@@ -10,6 +10,9 @@ Anapa.TodoController = Ember.ObjectController.extend({
         this.send('removeTodo');
       } else {
         this.get('model').save();
+        if(sys.getNode(this.get('model').get('id'))){
+          sys.renderer.redraw();
+        }
       }
     },
     removeTodo: function () {

@@ -1,3 +1,4 @@
+// Declaring sys here allows Ember code to send instructions to the graph.
 var sys;
 
 (function($){
@@ -37,8 +38,10 @@ var sys;
         // which allow you to step through the actual node objects but also pass an
         // x,y point in the screen's coordinate system
         // 
-        ctx.fillStyle = "white"
-        ctx.fillRect(0,0, canvas.width, canvas.height)
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(0,0, canvas.width, canvas.height);
+
         
         particleSystem.eachEdge(function(edge, pt1, pt2){
           // edge: {source:Node, target:Node, length:#, data:{}}
@@ -59,9 +62,15 @@ var sys;
           // pt:   {x:#, y:#}  node position in screen coords
 
           // draw a rectangle centered at pt
+
           var w = 10
           ctx.fillStyle = (node.data.model.get('isCompleted')) ? "green" : "black"
-          ctx.fillRect(pt.x-w/2, pt.y-w/2, w,w)
+          ctx.fillRect(pt.x-w/2, pt.y-w/2, w,w);
+          label = node.data.model.get('title');
+          if(label){
+            ctx.font = 'italic 13px sans-serif';
+            ctx.fillText (label, pt.x+w, pt.y);
+          }
         })          
       },
       
