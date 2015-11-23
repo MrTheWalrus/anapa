@@ -60,7 +60,7 @@ var sys;
 
           // draw a rectangle centered at pt
           var w = 10
-          ctx.fillStyle = (node.data.completed) ? "green" : "black"
+          ctx.fillStyle = (node.data.model.get('isCompleted')) ? "green" : "black"
           ctx.fillRect(pt.x-w/2, pt.y-w/2, w,w)
         })          
       },
@@ -124,9 +124,6 @@ var sys;
     sys = arbor.ParticleSystem(1000, 600, 0.5) // create the system with sensible repulsion/stiffness/friction
     sys.parameters({gravity:true}) // use center-gravity to make the graph settle nicely (ymmv)
     sys.renderer = Renderer("#viewport") // our newly created renderer will have its .init() method called shortly by sys...
-
-    // Arbor seems to freak out if it ever has exactly one node
-    sys.addEdge('origin', 'anchor');
 
     // or, equivalently:
     //

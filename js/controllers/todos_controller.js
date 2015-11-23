@@ -1,5 +1,15 @@
 Anapa.TodosController = Ember.ArrayController.extend({
   actions: {
+    drawNodes: function() {
+      var nodeList = this.store.all('todo');
+      nodeList.forEach(function(n){
+        // TODO: This should probably be model
+        sys.addNode(n.id, {model: n})
+        n.get('tos').forEach(function(a){
+          sys.addEdge(n.id, a.get('id'));
+        });
+      })
+    },
     clearCompleted: function() {
       var completed = this.filterBy('isCompleted', true);
       completed.invoke('deleteRecord');
@@ -26,17 +36,15 @@ Anapa.TodosController = Ember.ArrayController.extend({
       todo.save();
 
       // Draw a node for the new model
-      sys.addNode(todo.id, {model: this});
+      sys.addNode(todo.id, {model: todo});
       // sys.addEdge('origin', todo.id)
 
       todo.get('tos').map(function(item, index){
-        Ember.Logger.info(item);
         sys.addEdge(todo.id, item.get('id'));
       });
 
     }
   },
-
   hasCompleted: function() {
     return this.get('completed') > 0;
   }.property('completed'),
@@ -55,12 +63,4 @@ Anapa.TodosController = Ember.ArrayController.extend({
     }
   }.property('@each.isCompleted'),
 
-  remaining: function () {
-    return this.filterProperty('isCompleted', false).get('length');
-  }.property('@each.isCompleted'),
-
-  inflection: function () {
-    var remaining = this.get('remaining');
-    return remaining === 1 ? 'item' : 'items';
-  }.property('remaining')
 });
